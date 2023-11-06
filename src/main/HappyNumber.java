@@ -5,20 +5,12 @@ public class HappyNumber {
     public static boolean isHappy (int i, int base) {
         List<Integer> allSums = new ArrayList<>();
 
-        int newNumber = i;
-
-        while (true) {
-            Integer sum = sumSquareDigits(newNumber, base);
-
-            if (sum == 1)
-                return true;
-            if (allSums.contains(sum))
-                return false;
-
-            allSums.add(sum);
-
-            newNumber = sum;
+        while (!allSums.contains(i)) {
+            allSums.add(i);
+            i = sumSquareDigits(i, base);
         }
+
+        return i == 1;
     }
 
     public static Integer sumSquareDigits (int i, int base) {
